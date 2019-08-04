@@ -1,7 +1,3 @@
-const fadeAlert = () => {
-  $().alert('close');
-};
-
 const handleAlert = response => {
   const data = response.detail[0];
   if (data.error) {
@@ -17,6 +13,8 @@ const setupAlerts = () => {
   document.addEventListener('ajax:success', handleAlert);
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  setupAlerts();
+document.addEventListener('turbolinks:load', () => {
+  setTimeout(() => {
+    $('.alert.fade').alert('close');
+  }, 5000);
 });
