@@ -14,7 +14,10 @@ class LockboxPartnersController < ApplicationController
   def create
     @lockbox_partner = LockboxPartner.new(lockbox_params)
     if @lockbox_partner.save
-      redirect_to @lockbox_partner, notice: 'Lockbox Partner was successfully created.'
+      redirect_to(
+        new_lockbox_partner_user_path(@lockbox_partner),
+        notice: 'Lockbox Partner was successfully created.'
+      )
     else
       render :new
     end

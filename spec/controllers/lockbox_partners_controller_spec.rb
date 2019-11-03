@@ -53,7 +53,7 @@ describe LockboxPartnersController do
       end
 
       it "redirects to the new partner" do
-        expect(response).to redirect_to(lockbox_partner_path(LockboxPartner.last))
+        expect(response).to redirect_to(new_lockbox_partner_user_path(LockboxPartner.last))
       end
     end
 
@@ -142,7 +142,7 @@ describe LockboxPartnersController do
     before do
       @new_name = authorized_lockbox_partner.name + SecureRandom.uuid
       sign_in(user)
-      put :update, params: { 
+      put :update, params: {
         id: authorized_lockbox_partner.id,
         lockbox_partner: {
           name: @new_name

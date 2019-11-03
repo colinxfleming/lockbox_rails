@@ -35,6 +35,7 @@ class Users::PasswordsController < Devise::PasswordsController
     if resource.sign_in_count > 1
       super(resource)
     else
+      flash.delete(:notice)
       onboarding_success_path
     end
   end
