@@ -55,6 +55,7 @@ RSpec.describe "Lockbox Partner Initialization Flow", type: :system do
     end
 
     # TODO Coordinator can manage users from the "Manage Lockbox Partner" page
+    # This functionality will come from the completion of issue 191
 
     # TODO Email is sent to coordinator, reminding them to add money to the lockbox partner
 
@@ -82,7 +83,14 @@ RSpec.describe "Lockbox Partner Initialization Flow", type: :system do
 
     # TODO Specify how the user is informed that the cash addition has been confirmed
 
-    # TODO "File a support request tab" is live after confirmation
+    # "File a support request" tab is live after confirmation
+    in_session "MAC Coordinator" do
+      lockbox_partner = LockboxPartner.last
+      visit new_lockbox_partner_support_request_path(lockbox_partner)
+      expect(lockbox_partner.active).to be true
+      assert_no_text "Lockbox partner not yet active"
+      assert_text "File a support request"
+    end
 
   end
 end
