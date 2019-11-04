@@ -87,7 +87,7 @@ RSpec.describe "Lockbox Partner Initialization Flow", type: :system do
     in_session "MAC Coordinator" do
       lockbox_partner = LockboxPartner.last
       visit new_lockbox_partner_support_request_path(lockbox_partner)
-      expect(lockbox_partner.active).to be true
+      expect(lockbox_partner.active?).to be true
       assert_no_text "Lockbox partner not yet active"
       assert_text "File a support request"
     end
